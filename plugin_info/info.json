@@ -1,0 +1,16 @@
+{
+	"id" : "maginonsmartplug",
+	"name" : "Smartplug Maginon",
+	"description" : "Plugin pour piloter et récupérer les information des Prises Maginon (Aldi)",
+	"licence" : "AGPL",
+	"author" : "Supermat",
+	"require" : "3.2",
+	"category" : "energy",
+	"hasDependency" : false,
+	"hasOwnDeamon" : false,
+	"maxDependancyInstallTime" : 0,
+	"changelog" : "https://github.com/supermat/maginonsmartplug/changelog",
+	"documentation" : "https://github.com/supermat/maginonsmartplug/readme.md",
+	"language" : "",
+	"compatibility" : ""
+}
