@@ -93,10 +93,16 @@ foreach (jeeObject::all() as $object) {
 			<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
 		</div>
 	</div>
-       <div class="form-group">
+    <div class="form-group">
         <label class="col-sm-3 control-label">{{Paramètres}}</label>
         <div class="col-sm-3">
             <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="city" placeholder="param1"/>
+        </div>
+        <div class="col-sm-3">
+            <label class="col-lg-3 control-label">{{Adresse IP}}</label>
+            <div class="col-lg-4">
+                <input type="text" class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="addrip" placeholder="{{Adresse IP}}"/>
+            </div>
         </div>
     </div>
 </fieldset>

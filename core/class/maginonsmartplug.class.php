@@ -161,6 +161,28 @@ class maginonsmartplug extends eqLogic {
     /*     * **********************Getteur Setteur*************************** */
 
     public function getPlugInfo() {
+        $ipsmartplug = $this->getConfiguration('addr');
+        
+        /* first get relay status, nightmode, mac address alias currentruntime from info */
+        $command = '/usr/bin/python ' .dirname(__FILE__).'/../../3rparty/smartplug-maginon.py  -t ' . $ipsmartplug . ' -c infos';
+        $result=trim(shell_exec($command));
+        log::add('wifismartplug','debug','retour [info]');
+        log::add('wifismartplug','debug',$command);
+        log::add('wifismartplug','debug',$result);
+        
+        /* decode reponse info */
+        $jsoninfo = json_decode($result,true);
+        $state =$jsoninfo['relay_state'];
+        $puissance =$jsoninfo['puissance'];
+        $tension =$jsoninfo['tension'];
+        $intensite =$jsoninfo['intensite'];
+        $compteur =$jsoninfo['compteur'];
+        
+        log::add('wifismartplug','debug', 'state : '.$state );
+        log::add('wifismartplug','debug', 'puissance : '.$puissance );
+        log::add('wifismartplug','debug', 'tension : '.$tension );
+        log::add('wifismartplug','debug', 'intensite : '.$intensite );
+        log::add('wifismartplug','debug', 'compteur : '.$compteur );
 		return 5.3;
 	}
 }
