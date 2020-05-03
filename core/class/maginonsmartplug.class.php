@@ -65,7 +65,60 @@ class maginonsmartplug extends eqLogic {
     }
 
     public function postSave() {
+        $tension = $this->getCmd(null, 'tension');
+        if (!is_object($tension)) {
+            $tension = new vdmCmd();
+            $tension->setName(__('Tension', __FILE__));
+        }
+        $tension->setLogicalId('tension');
+        $tension->setEqLogic_id($this->getId());
+        $tension->setType('info');
+        $tension->setSubType('number');
+        $tension->save();
+
+        $puissance = $this->getCmd(null, 'puissance');
+        if (!is_object($puissance)) {
+            $puissance = new vdmCmd();
+            $puissance->setName(__('Puissance', __FILE__));
+        }
+        $puissance->setLogicalId('puissance');
+        $puissance->setEqLogic_id($this->getId());
+        $puissance->setType('info');
+        $puissance->setSubType('number');
+        $puissance->save();	
         
+        $on = $this->getCmd(null, 'on');
+        if (!is_object($on)) {
+            $on = new vdmCmd();
+            $on->setName(__('Allumer', __FILE__));
+        }
+        $on->setEqLogic_id($this->getId());
+        $on->setLogicalId('on');
+        $on->setType('action');
+        $on->setSubType('other');
+        $on->save();
+
+        $off = $this->getCmd(null, 'off');
+        if (!is_object($off)) {
+            $off = new vdmCmd();
+            $off->setName(__('Eteindre', __FILE__));
+        }
+        $off->setEqLogic_id($this->getId());
+        $off->setLogicalId('off');
+        $off->setType('action');
+        $off->setSubType('other');
+        $off->save();
+
+        $refresh = $this->getCmd(null, 'refresh');
+        if (!is_object($refresh)) {
+            $refresh = new vdmCmd();
+            $refresh->setName(__('Rafraichir', __FILE__));
+        }
+        $refresh->setEqLogic_id($this->getId());
+        $refresh->setLogicalId('refresh');
+        $refresh->setType('action');
+        $refresh->setSubType('other');
+        $refresh->save();
     }
 
     public function preUpdate() {
