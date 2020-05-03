@@ -159,6 +159,10 @@ class maginonsmartplug extends eqLogic {
      */
 
     /*     * **********************Getteur Setteur*************************** */
+
+    public function getPlugInfo() {
+		return 5.3;
+	}
 }
 
 class maginonsmartplugCmd extends cmd {
@@ -178,7 +182,13 @@ class maginonsmartplugCmd extends cmd {
      */
 
     public function execute($_options = array()) {
-        
+        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
+		switch ($this->getLogicalId()) {	//vérifie le logicalid de la commande 			
+			case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe. 
+				$info = $eqlogic->getPlugInfo(); 	//On lance la fonction getPlugInfo() pour récupérer une info
+				$eqlogic->checkAndUpdateCmd('tension', $info); // on met à jour la commande avec le LogicalId "story"  de l'eqlogic 
+				break;
+		}
     }
 
     /*     * **********************Getteur Setteur*************************** */
