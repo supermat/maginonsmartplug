@@ -72,12 +72,12 @@ class maginonsmartplug extends eqLogic {
         }
         $tension->setLogicalId('tension');
         $tension->setEqLogic_id($this->getId());
-        $puissance->setUnite('V');
+        $tension->setUnite('V');
         $tension->setType('info');
         $tension->setSubType('numeric');
         $tension->save();
 
-       /* $puissance = $this->getCmd(null, 'puissance');
+        $puissance = $this->getCmd(null, 'puissance');
         if (!is_object($puissance)) {
             $puissance = new maginonsmartplugCmd();
             $puissance->setName(__('Puissance', __FILE__));
@@ -109,7 +109,7 @@ class maginonsmartplug extends eqLogic {
         $off->setLogicalId('off');
         $off->setType('action');
         $off->setSubType('other');
-        $off->save();*/
+        $off->save();
 
         $refresh = $this->getCmd(null, 'refresh');
         if (!is_object($refresh)) {
