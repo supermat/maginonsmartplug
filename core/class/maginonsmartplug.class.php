@@ -183,7 +183,11 @@ class maginonsmartplug extends eqLogic {
         log::add('wifismartplug','debug', 'tension : '.$tension );
         log::add('wifismartplug','debug', 'intensite : '.$intensite );
         log::add('wifismartplug','debug', 'compteur : '.$compteur );
-		return 5.3;
+        
+        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
+        $eqlogic->checkAndUpdateCmd('tension', $tension);
+        
+        return 5.3;
 	}
 }
 
@@ -208,7 +212,7 @@ class maginonsmartplugCmd extends cmd {
 		switch ($this->getLogicalId()) {	//vérifie le logicalid de la commande 			
 			case 'refresh': // LogicalId de la commande rafraîchir que l’on a créé dans la méthode Postsave de la classe. 
 				$info = $eqlogic->getPlugInfo(); 	//On lance la fonction getPlugInfo() pour récupérer une info
-				$eqlogic->checkAndUpdateCmd('tension', $info); // on met à jour la commande avec le LogicalId "story"  de l'eqlogic 
+				$eqlogic->checkAndUpdateCmd('intensite', $info); // on met à jour la commande avec le LogicalId "story"  de l'eqlogic 
 				break;
 		}
     }
