@@ -12,15 +12,15 @@ $eqLogics = eqLogic::byType($plugin->getId());
   <legend><i class="fas fa-cog"></i>  {{Gestion}}</legend>
   <div class="eqLogicThumbnailContainer">
       <div class="cursor eqLogicAction logoPrimary" data-action="add">
-        <i class="fas fa-plus-circle"></i>
+        <i class="fas fa-plus-circle" style="color:#1881AB"></i>
         <br>
         <span style="color:#1881AB">{{Ajouter}}</span>
-    </div>
+      </div>
       <div class="cursor eqLogicAction logoSecondary" data-action="gotoPluginConf">
-      <i class="fas fa-wrench"></i>
-    <br>
-    <span>{{Configuration}}</span>
-  </div>
+        <i class="fas fa-wrench"></i>
+        <br>
+        <span>{{Configuration}}</span>
+      </div>
   </div>
   <legend><i class="fas fa-table"></i> {{Mes équipements}}</legend>
 	   <input class="form-control" placeholder="{{Rechercher}}" id="in_searchEqlogic" />
