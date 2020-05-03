@@ -61,10 +61,6 @@ class maginonsmartplug extends eqLogic {
     }
 
     public function preSave() {
-        
-    }
-
-    public function postSave() {
         $tension = $this->getCmd(null, 'tension');
         if (!is_object($tension)) {
             $tension = new vdmCmd();
@@ -73,7 +69,7 @@ class maginonsmartplug extends eqLogic {
         $tension->setLogicalId('tension');
         $tension->setEqLogic_id($this->getId());
         $tension->setType('info');
-        $tension->setSubType('number');
+        $tension->setSubType('numeric');
         $tension->save();
 
         $puissance = $this->getCmd(null, 'puissance');
@@ -84,7 +80,7 @@ class maginonsmartplug extends eqLogic {
         $puissance->setLogicalId('puissance');
         $puissance->setEqLogic_id($this->getId());
         $puissance->setType('info');
-        $puissance->setSubType('number');
+        $puissance->setSubType('numeric');
         $puissance->save();	
         
         $on = $this->getCmd(null, 'on');
@@ -119,6 +115,10 @@ class maginonsmartplug extends eqLogic {
         $refresh->setType('action');
         $refresh->setSubType('other');
         $refresh->save();
+    }
+
+    public function postSave() {
+        
     }
 
     public function preUpdate() {
