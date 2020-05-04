@@ -161,7 +161,7 @@ class maginonsmartplug extends eqLogic {
     /*     * **********************Getteur Setteur*************************** */
 
     public function getPlugInfo() {
-        $ipsmartplug = $this->getConfiguration('addr');
+        $ipsmartplug = $this->getConfiguration('addrip');
         
         /* first get relay status, nightmode, mac address alias currentruntime from info */
         $command = '/usr/bin/python ' .dirname(__FILE__).'/../../3rparty/smartplug-maginon.py  -t ' . $ipsmartplug . ' -c infos';
@@ -170,23 +170,24 @@ class maginonsmartplug extends eqLogic {
         log::add('maginonsmartplug','debug',$command);
         log::add('maginonsmartplug','debug',$result);
         
-        /* decode reponse info */
-        $jsoninfo = json_decode($result,true);
-        $state =$jsoninfo['relay_state'];
-        $puissance =$jsoninfo['puissance'];
-        $tension =$jsoninfo['tension'];
-        $intensite =$jsoninfo['intensite'];
-        $compteur =$jsoninfo['compteur'];
-        
-        log::add('maginonsmartplug','debug', 'state : '.$state );
-        log::add('maginonsmartplug','debug', 'puissance : '.$puissance );
-        log::add('maginonsmartplug','debug', 'tension : '.$tension );
-        log::add('maginonsmartplug','debug', 'intensite : '.$intensite );
-        log::add('maginonsmartplug','debug', 'compteur : '.$compteur );
-        
-        $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
-        $eqlogic->checkAndUpdateCmd('tension', $tension);
-        
+        if(!is_null($result) {
+            /* decode reponse info */
+            $jsoninfo = json_decode($result,true);
+            $state =$jsoninfo['relay_state'];
+            $puissance =$jsoninfo['puissance'];
+            $tension =$jsoninfo['tension'];
+            $intensite =$jsoninfo['intensite'];
+            $compteur =$jsoninfo['compteur'];
+            
+            log::add('maginonsmartplug','debug', 'state : '.$state );
+            log::add('maginonsmartplug','debug', 'puissance : '.$puissance );
+            log::add('maginonsmartplug','debug', 'tension : '.$tension );
+            log::add('maginonsmartplug','debug', 'intensite : '.$intensite );
+            log::add('maginonsmartplug','debug', 'compteur : '.$compteur );
+            
+            $eqlogic = $this->getEqLogic(); //récupère l'éqlogic de la commande $this
+            $eqlogic->checkAndUpdateCmd('tension', $tension);
+        }
         return 5.3;
 	}
 }
