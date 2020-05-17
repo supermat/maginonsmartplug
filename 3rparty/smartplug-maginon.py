@@ -80,7 +80,7 @@ try:
 		for line in response.split('\n'):
 			if line.startswith("$01W"):
 				power =  '"puissance" : ' + str(float(line[7:11]+ '.' + line[11:]))
-				if float(line[7:11]+ '.' + line[11:]) > 0.2:
+				if float(line[7:11]+ '.' + line[11:]) > 0.3:
 					etat = 1
 				else: etat = 0
 			elif line.startswith("$01V"):
