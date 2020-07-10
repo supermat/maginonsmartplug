@@ -77,6 +77,18 @@ class maginonsmartplug extends eqLogic {
         $tension->setSubType('numeric');
         $tension->save();
 
+        $intensite = $this->getCmd(null, 'intensite');
+        if (!is_object($intensite)) {
+            $intensite = new maginonsmartplugCmd();
+            $intensite->setName(__('Intensite', __FILE__));
+        }
+        $intensite->setLogicalId('intensite');
+        $intensite->setEqLogic_id($this->getId());
+        $intensite->setUnite('A');
+        $intensite->setType('info');
+        $intensite->setSubType('numeric');
+        $intensite->save();
+
         $puissance = $this->getCmd(null, 'puissance');
         if (!is_object($puissance)) {
             $puissance = new maginonsmartplugCmd();
@@ -110,6 +122,7 @@ class maginonsmartplug extends eqLogic {
         $off->setType('action');
         $off->setSubType('other');
         $off->save();
+        
 
         $refresh = $this->getCmd(null, 'refresh');
         if (!is_object($refresh)) {
